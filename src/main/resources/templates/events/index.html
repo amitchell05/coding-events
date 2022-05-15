@@ -10,6 +10,8 @@
 <body>
     <h1>All Events</h1>
 
+    <nav th:replace="fragments :: navigation"></nav>
+
     <!-- ${events} => if there is something called events (i.e. a non-null variable called 'events') -->
     <!-- ${events.size()} => if the events list has at least one event -->
     <p th:unless="${events} and ${events.size()}">No events!</p>
