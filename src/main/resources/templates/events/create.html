@@ -5,16 +5,16 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>All Events</title>
+    <title>Create Event</title>
 </head>
 <body>
-    <h1>All Events</h1>
 
-    <ul>
-        <th:block th:each="event : ${events}">
-            <li th:text="${event}"></li>
-        </th:block>
-    </ul>
+    <h1>Create Event</h1>
+
+    <form method="post">
+        <input type="text" name="eventName">
+        <input type="submit" value="Create Event">
+    </form>
 
 </body>
 </html>
