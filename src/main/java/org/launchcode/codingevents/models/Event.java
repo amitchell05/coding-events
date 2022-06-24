@@ -8,6 +8,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
+/**
+ * Configures persistent class to be able to be stored by Hibernate (w/ @Entity and changing the fields, esp. id field)
+ * */
 @Entity
 public class Event {
 
