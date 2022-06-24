@@ -14,7 +14,6 @@ public class EventData {
     // get all events
     // Collection - an interface; extends the Iterable interface => has behaviors for looping over a collection
     public static Collection<Event> getAll() {
-        // returns the values of your collection
         return events.values();
     }
 
@@ -24,8 +23,8 @@ public class EventData {
     }
 
     // add an event
+    // key: id, value: event
     public static void add(Event event) {
-        // key: id, value: event
         events.put(event.getId(), event);
     }
 
