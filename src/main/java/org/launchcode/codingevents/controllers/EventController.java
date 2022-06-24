@@ -2,6 +2,7 @@ package org.launchcode.codingevents.controllers;
 
 import org.launchcode.codingevents.data.EventRepository;
 import org.launchcode.codingevents.models.Event;
+import org.launchcode.codingevents.models.EventCategory;
 import org.launchcode.codingevents.models.EventType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +31,7 @@ public class EventController {
 
     // lives at /events/create
     @GetMapping("create")
-    public String displayCreateEventForm(Model model) {
+    public String renderCreateEventForm(Model model) {
         model.addAttribute("title", "Create Event");
         model.addAttribute(new Event());
         model.addAttribute("types", EventType.values());
@@ -43,6 +44,8 @@ public class EventController {
                                          Errors errors, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Event");
+            // Validation messages appear when we DON'T add this
+//            model.addAttribute(new Event());
             return "events/create";
         }
 
@@ -51,7 +54,7 @@ public class EventController {
     }
 
     @GetMapping("delete")
-    public String displayDeleteEventForm(Model model) {
+    public String renderDeleteEventForm(Model model) {
         model.addAttribute("title", "Delete Events");
         model.addAttribute("events", eventRepository.findAll());
         return "events/delete";
