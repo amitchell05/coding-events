@@ -10,7 +10,7 @@ public class Event {
     private int id;
     private static int nextId = 1;
 
-    @NotBlank
+    @NotBlank(message = "Name is required.")
     @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters.")
     private String name;
 
@@ -28,6 +28,8 @@ public class Event {
         this.id = nextId;
         nextId++;
     }
+
+    public Event() {}
 
     public String getName() {
         return name;
