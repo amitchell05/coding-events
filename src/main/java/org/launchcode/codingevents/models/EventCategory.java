@@ -27,4 +27,5 @@ public class EventCategory extends AbstractEntity {
     public String toString() {
         return name;
     }
+
 }
