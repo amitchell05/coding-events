@@ -1,44 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-    <head th:replace="fragments :: head"></head>
-    <body class="container">
+<head th:replace="fragments :: head"></head>
+<body class="container">
 
-        <header th:replace="fragments :: header"></header>
+<header th:replace="fragments :: header"></header>
 
-        <form method="post">
-            <div class="form-group">
-                <label>Name
-                    <input th:field="${event.name}" class="form-control">
-                </label>
-                <p th:errors="${event.name}" class="error" ></p>
-            </div>
-            <div class="form-group">
-                <label>Description
-                    <input th:field="${event.description}" class="form-control">
-                </label>
-                <p th:errors="${event.description}" class="error" ></p>
-            </div>
-            <div class="form-group">
-                <label>Email
-                    <input th:field="${event.contactEmail}" class="form-control">
-                </label>
-                <p th:errors="${event.contactEmail}" class="error"></p>
-            </div>
-            <div class="form-group">
-                <label>Category
-                    <select th:field="${event.eventCategory}">
-                        <option th:each="eventCategory : ${categories}"
-                                th:value="${eventCategory.id}"
-                                th:text="${eventCategory.name}"
-                        ></option>
-                    </select>
-                </label>
-                <p class="error" th:errors="${event.eventCategory}"></p>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-success">
-            </div>
-        </form>
+<form method="post">
+    <div class="form-group">
+        <label>Name
+            <input th:field="${event.name}" class="form-control">
+        </label>
+        <p th:errors="${event.name}" class="error"></p>
+    </div>
+    <div class="form-group">
+        <label>Description
+            <input th:field="${event.eventDetails.description}" class="form-control">
+        </label>
+        <p th:errors="${event.eventDetails.description}" class="error"></p>
+    </div>
+    <div class="form-group">
+        <label>Email
+            <input th:field="${event.eventDetails.contactEmail}" class="form-control">
+        </label>
+        <p th:errors="${event.eventDetails.contactEmail}" class="error"></p>
+    </div>
+    <div class="form-group">
+        <label>Category
+            <select th:field="${event.eventCategory}">
+                <option th:each="eventCategory : ${categories}"
+                        th:value="${eventCategory.id}"
+                        th:text="${eventCategory.name}"
+                ></option>
+            </select>
+        </label>
+        <p class="error" th:errors="${event.eventCategory}"></p>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-success">
+    </div>
+</form>
 
-    </body>
+</body>
 </html>
