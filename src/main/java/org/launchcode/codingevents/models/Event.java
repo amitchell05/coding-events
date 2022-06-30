@@ -1,12 +1,9 @@
 package org.launchcode.codingevents.models;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.Objects;
 
 /**
  * Configures persistent class to be able to be stored by Hibernate (w/ @Entity and changing the fields, esp. id field)
