@@ -144,4 +144,10 @@ public class AuthenticationController {
         // Redirects user to the home page
         return "redirect:";
     }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        request.getSession().invalidate();
+        return "redirect:/login";
+    }
 }
