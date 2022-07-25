@@ -2,6 +2,7 @@ package org.launchcode.codingevents.controllers;
 
 import org.launchcode.codingevents.data.UserRepository;
 import org.launchcode.codingevents.models.User;
+import org.launchcode.codingevents.models.dto.LoginFormDTO;
 import org.launchcode.codingevents.models.dto.RegisterFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -92,6 +93,55 @@ public class AuthenticationController {
         setUserInSession(request.getSession(), newUser);
 
         // Redirect the user to the home page
+        return "redirect:";
+    }
+
+    @GetMapping("/login")
+    public String displayLoginForm(Model model) {
+        model.addAttribute(new LoginFormDTO());
+        model.addAttribute("title", "Log In");
+        return "login";
+    }
+
+    /**
+     *   Lines 111-114 => define handler method at the route "/login";
+     *   takes a valid LoginFormDTO object, associated errors, and a Model;
+     *   this method needs an HttpServletRequest object (represents the incoming request provided by Spring)
+     */
+    @PostMapping("/login")
+    public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO,
+                                   Errors errors, HttpServletRequest request,
+                                   Model model) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Log In");
+            return "login";
+        }
+
+        // Retrieves the User object with the given password from the database
+        User theUser = userRepository.findByUsername(loginFormDTO.getUsername());
+
+        // If the user does not exist, register a custom error and return to the form
+        if (theUser == null) {
+            errors.rejectValue("username", "user.invalid", "The given username does not exist");
+            model.addAttribute("title", "Log In");
+            return "login";
+        }
+
+        // Retrieves the submitted password from the from DTO
+        String password = loginFormDTO.getPassword();
+
+        // If the password is incorrect, register a custom error and return to the form => User.isMatchingPassword(); handles details associated with checked hashed passwords
+        if (!theUser.isMatchingPassword(password)) {
+            errors.rejectValue("password", "password.invalid", "Invalid password");
+            model.addAttribute("title", "Log In");
+            return "login";
+        }
+
+        // If user exists, create new session for the user
+        setUserInSession(request.getSession(), theUser);
+
+        // Redirects user to the home page
         return "redirect:";
     }
 }
